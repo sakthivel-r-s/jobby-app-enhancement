@@ -1,0 +1,137 @@
+.job-bg-container {
+  min-height: 100vh;
+}
+.job-bottom-container {
+  min-height: 90vh;
+  display: flex;
+  background-color: black;
+  padding-top: 20px;
+}
+.job-left-container {
+  width: 30%;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: white;
+}
+.employment-list-container {
+  border-top: 1px solid #7e858e;
+  border-bottom: 1px solid #7e858e;
+  padding-bottom: 10px;
+}
+.loader-container {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loader-profile {
+  width: 100%;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottom-right-container {
+  width: 60%;
+  min-height: 90vh;
+  padding-left: 20px;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  background-color: transparent;
+  border: 1px solid #272727;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 16px;
+  color: white;
+}
+.search-bar {
+  width: 100%;
+  background-color: transparent;
+  border: 0px none;
+  outline: none;
+  height: 30px;
+  padding-left: 10px;
+  color: white;
+  padding-right: 10px;
+}
+.search-button {
+  height: 30px;
+  width: 30px;
+  background-color: #272727;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+  border: 0px none;
+  outline: none;
+  border-radius: 5px;
+  margin-right: auto;
+}
+.jobs-list-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  list-style-type: none;
+  padding-left: 0px;
+  justify-content: space-between;
+  margin-right: 50px;
+  overflow-y: hidden;
+}
+.profile-container {
+  background-image: url(https://assets.ccbp.in/frontend/react-js/profile-bg.png);
+  background-size: cover;
+  height: 40vh;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 20px;
+}
+.profile-icon {
+  width: 50px;
+  height: 50px;
+}
+.profile-heading {
+  color: #64748b;
+  font-size: 30px;
+}
+.profile-bio {
+  color: #64748b;
+  font-size: 16px;
+}
+.profile-failure-container {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.retry-button {
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  border: 0px none;
+  background-color: #6366f1;
+  color: white;
+  font-size: 16px;
+  outline: none;
+  cursor: pointer;
+}
+.employment-heading {
+  font-size: 30px;
+}
+.employment-list {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding-left: 0px;
+}
+.job-failure-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}

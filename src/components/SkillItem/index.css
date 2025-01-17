@@ -1,0 +1,15 @@
+.skill-list-item {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+  margin-bottom: 30px;
+}
+.skill-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+.skill-name {
+  font-size: 16px;
+}

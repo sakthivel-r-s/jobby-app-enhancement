@@ -1,0 +1,135 @@
+.details-bg-container {
+  background-color: black;
+  color: white;
+  font-family: Roboto;
+  min-height: 100vh;
+}
+.job-item-image-container {
+  display: flex;
+  align-items: center;
+}
+.job-company-logo {
+  width: 50px;
+}
+.job-title-container {
+  margin-left: 10px;
+  margin-top: 0px;
+}
+.job-title-heading {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.job-rating-container {
+  display: flex;
+  align-items: center;
+}
+.star-icon {
+  width: 20px;
+  height: 20px;
+  margin: 0px;
+  color: #fbbf24;
+}
+.job-rating {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+  margin-left: 5px;
+}
+.job-location-container {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #cbd5e1;
+}
+.location-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.job-location {
+  font-size: 16px;
+  color: #cbd5e1;
+  margin-right: 10px;
+}
+.intern-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.job-package {
+  margin-left: auto;
+  font-size: 20px;
+  font-weight: bold;
+}
+.description-heading {
+  font-size: 20px;
+}
+.description-para {
+  font-size: 16px;
+}
+.details-card-container {
+  background-color: #272727;
+  padding: 20px;
+  border-radius: 20px;
+}
+.details-description-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.external-icon {
+  width: 16px;
+  height: 16px;
+  color: #6366f1;
+  margin-left: 5px;
+}
+.external-link {
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 16px;
+}
+.skills-list-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding-left: 0px;
+}
+.details-description-heading {
+  font-size: 30px;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+.details-para {
+  font-size: 16px;
+  font-weight: normal;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+.details-bottom-container {
+  padding: 50px;
+}
+.life-description-container {
+  display: flex;
+  align-items: flex-start;
+}
+.life-description {
+  width: 70%;
+  font-size: 16px;
+  font-weight: normal;
+  color: #cbd5e1;
+  margin-top: 0px;
+  padding-right: 30px;
+}
+.life-image {
+  width: 30%;
+  border-radius: 10px;
+}
+.similar-list-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  padding-left: 0px;
+}

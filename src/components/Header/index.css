@@ -1,0 +1,30 @@
+.nav-icon {
+  height: 40px;
+}
+.nav-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  padding-left: 0px;
+}
+.nav-list-item {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  margin-left: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.logout-button {
+  height: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  border: 0px none;
+  outline: none;
+  cursor: pointer;
+  background-color: #4f46e5;
+  color: white;
+  font-weight: bold;
+}

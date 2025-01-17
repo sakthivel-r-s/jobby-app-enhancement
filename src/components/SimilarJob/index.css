@@ -1,0 +1,11 @@
+.similar-list-item {
+  width: 30%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #272727;
+}
+.similar-location-container {
+  border: 0px none;
+  display: flex;
+  align-items: center;
+}
