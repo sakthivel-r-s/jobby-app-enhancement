@@ -76,11 +76,20 @@ class JobItemDetails extends Component {
     }
     const response = await fetch(jobApiUrl, options)
     const data = await response.json()
-    const updatedData = {
-      jobDetails: convertJobDetails(data.job_details),
-      similarJobs: convertSimilarJobs(data.similar_jobs),
+    if (response.ok === true) {
+      const updatedData = {
+        jobDetails: convertJobDetails(data.job_details),
+        similarJobs: convertSimilarJobs(data.similar_jobs),
+      }
+      this.setState({
+        jobData: updatedData,
+        jobDetailsStatus: fetchStatus.success,
+      })
+    } else {
+      this.setState({
+        jobDetailsStatus: fetchStatus.failure,
+      })
     }
-    this.setState({jobData: updatedData, jobDetailsStatus: fetchStatus.success})
   }
 
   renderLoadingView = () => (
@@ -88,6 +97,27 @@ class JobItemDetails extends Component {
       <Loader type="ThreeDots" color="#ffffff" height="50" width="50" />
     </div>
   )
+
+  renderJobDetailsFailureView = () => {
+    console.log('renderJobFailureView')
+    return (
+      <div className="job-failure-container">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/failure-img.png"
+          alt="failure view"
+        />
+        <h1>Oops! Something Went Wrong</h1>
+        <p>We cannot seem to find the page you are looking for</p>
+        <button
+          className="retry-button"
+          type="button"
+          onClick={this.getJobDetails}
+        >
+          Retry
+        </button>
+      </div>
+    )
+  }
 
   renderJobDetailsSuccessView = () => {
     const {jobData} = this.state

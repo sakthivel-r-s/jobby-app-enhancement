@@ -5,7 +5,9 @@ import {BsSearch} from 'react-icons/bs'
 
 import Header from '../Header'
 import EmploymentItem from '../EmploymentItem'
+import LocationItem from '../LocationItem'
 import JobItem from '../JobItem'
+import SalaryItem from '../SalaryItem'
 
 import './index.css'
 
@@ -54,6 +56,29 @@ const salaryRangesList = [
   },
 ]
 
+const locationTypesList = [
+  {
+    locationId: 'HYDERABAD',
+    label: 'Hyderabad',
+  },
+  {
+    locationId: 'BANGALORE',
+    label: 'Bangalore',
+  },
+  {
+    locationId: 'CHENNAI',
+    label: 'Chennai',
+  },
+  {
+    locationId: 'DELHI',
+    label: 'Delhi',
+  },
+  {
+    locationId: 'MUMBAI',
+    label: 'Mumbai',
+  },
+]
+
 class Jobs extends Component {
   state = {
     jobStatus: fetchStatus.initial,
@@ -62,6 +87,8 @@ class Jobs extends Component {
     jobData: {},
     employmentList: [],
     searchText: '',
+    locationStatusList: [],
+    selectedSalary: '',
   }
 
   componentDidMount() {
@@ -76,8 +103,6 @@ class Jobs extends Component {
   }
 
   addEmploymentList = (label, isChecked) => {
-    console.log('addEmploymentList')
-    console.log(isChecked)
     if (isChecked === false) {
       this.setState(
         prevState => ({
@@ -85,16 +110,45 @@ class Jobs extends Component {
             eachItem => eachItem !== label,
           ),
         }),
-        this.getJobData(),
+        this.getJobData,
       )
     } else {
       this.setState(
         prevState => ({
           employmentList: [...prevState.employmentList, label],
         }),
-        this.getJobData(),
+        this.getJobData,
       )
     }
+  }
+
+  addLocationList = (label, isChecked) => {
+    if (isChecked === false) {
+      this.setState(
+        prevState => ({
+          locationStatusList: prevState.locationStatusList.filter(
+            eachItem => eachItem !== label,
+          ),
+        }),
+        this.getJobData,
+      )
+    } else {
+      this.setState(
+        prevState => ({
+          locationStatusList: [...prevState.locationStatusList, label],
+        }),
+        this.getJobData,
+      )
+    }
+  }
+
+  addSalaryList = label => {
+    this.setState(
+      {
+        selectedSalary: label,
+      },
+      this.getJobData,
+    )
   }
 
   getProfileData = async () => {
@@ -131,11 +185,12 @@ class Jobs extends Component {
   getJobData = async () => {
     this.setState({jobStatus: fetchStatus.loading})
     console.log('getJobData')
-    const {searchText, employmentList} = this.state
+    const {searchText, employmentList, locationStatusList, selectedSalary} =
+      this.state
     const emString = employmentList.join(',')
-
+    const locationString = locationStatusList.join(',')
     const jwtToken = Cookies.get('jwt_token')
-    const jobApiUrl = `https://apis.ccbp.in/jobs?employment_type=${emString}&search=${searchText}`
+    const jobApiUrl = `https://apis.ccbp.in/jobs?employment_type=${emString}&minimum_package=${selectedSalary}&search=${searchText}&location=${locationString}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -146,6 +201,7 @@ class Jobs extends Component {
     if (response.ok === true) {
       const data = await response.json()
       const fetchData = data.jobs
+      console.log(fetchData)
       const updatedJobs = fetchData.map(job => ({
         companyLogoUrl: job.company_logo_url,
         employmentType: job.employment_type,
@@ -240,14 +296,38 @@ class Jobs extends Component {
     }
   }
 
+  renderNoJobView = () => {
+    console.log('renderJobFailureView')
+    return (
+      <div className="job-failure-container">
+        <img
+          src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+          alt="no jobs"
+        />
+        <h1>No Jobs Found</h1>
+        <p>We could not find any jobs. Try other filters</p>
+        <button
+          className="retry-button"
+          type="button"
+          onClick={this.getJobDetails}
+        >
+          Retry
+        </button>
+      </div>
+    )
+  }
+
   renderJobSuccessView = () => {
     const {searchText, jobData} = this.state
     console.log('renderJobSuccessView')
-    return (
+    return jobData.length === 0 ? (
+      this.renderNoJobView()
+    ) : (
       <div className="job-container">
-        <div className="search-container">
+        <div className="search-container" data-testid="searchbox">
           <input
             placeholder="Search"
+            
             onChange={this.updateSearchText}
             className="search-bar"
             value={searchText}
@@ -293,8 +373,6 @@ class Jobs extends Component {
   }
 
   render() {
-    console.log('render')
-    const {employmentList} = this.state
     return (
       <div className="job-bg-container">
         <div className="nav-container">
@@ -320,16 +398,23 @@ class Jobs extends Component {
                 <h1 className="employment-heading">Salary Range</h1>
                 <ul className="employment-list">
                   {salaryRangesList.map(eachItem => (
-                    <li key={eachItem.salaryRangeId}>
-                      <input
-                        id={eachItem.salaryRangeId}
-                        type="radio"
-                        value={eachItem.salaryRangeId}
-                      />
-                      <label htmlFor={eachItem.salaryRangeId}>
-                        {eachItem.label}
-                      </label>
-                    </li>
+                    <SalaryItem
+                      addSalaryList={this.addSalaryList}
+                      salaryDetails={eachItem}
+                      key={eachItem.salaryRangeId}
+                    />
+                  ))}
+                </ul>
+              </div>
+              <div className="employment-list-container">
+                <h1 className="employment-heading">Location</h1>
+                <ul className="employment-list">
+                  {locationTypesList.map(eachItem => (
+                    <LocationItem
+                      addLocationList={this.addLocationList}
+                      locationDetails={eachItem}
+                      key={eachItem.locationId}
+                    />
                   ))}
                 </ul>
               </div>
